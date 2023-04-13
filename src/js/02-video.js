@@ -18,6 +18,12 @@ player.on('timeupdate', throttle(onTimeUpdate, 1000)); // По умолчани�
 
 // При перезагрузке страницы
 window.onload = () => {
-  player.setCurrentTime(load(VIDPLAYER_CURTIME)); // Вспоминаем предыдущий таймлайн
-  console.log(`time loaded!`, load(VIDPLAYER_CURTIME));
+  const playerNewTime = load(VIDPLAYER_CURTIME);
+
+  if (playerNewTime) {
+    player.setCurrentTime(playerNewTime);
+    console.log(`time loaded!`, playerNewTime);
+  } else {
+    console.log('There is no time in LS');
+  }
 };
