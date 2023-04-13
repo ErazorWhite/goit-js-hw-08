@@ -16,6 +16,11 @@ function onInput() {
 function onSubmit(event) {
   event.preventDefault(); // Отменяем действие по умолчанию
 
+  if (!emailEl.value || !textAreaEl.value) {
+    alert('feel all fields');
+    return;
+  }
+
   console.log({ email: emailEl.value, message: textAreaEl.value }); // Объект в консоль
 
   // Очищаем поля формы
@@ -27,7 +32,8 @@ function onSubmit(event) {
 }
 
 window.onload = () => {
-  const { email, message } = load(FORMSTATE_KEY); // Загружаем из хранилища
+  const { email, message } = load(FORMSTATE_KEY) || {}; // Загружаем из хранилища
+
   if (email) {
     emailEl.value = email; // Почту
   }
